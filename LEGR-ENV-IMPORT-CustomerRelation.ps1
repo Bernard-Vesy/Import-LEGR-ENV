@@ -1,7 +1,7 @@
 # - Import le set de donnée dans une variable $DATA
 
 #$data = Import-Excel -Path "\\lehu-fs-1-p\File_Share_Root\Docu\5000 - Vállalati Dokumentumok_Corporate Documents\10 - PDF-ek Share Pointra\RKFT Document list with tags.xlsx" 
-$data = Import-Excel -Path "C:\Users\bve\OneDrive - LEMO SA\Applications\LE_Environnement\LE_Environnement.xlsx"
+$data = Import-Excel -Path "C:\Users\bve\OneDrive - LEMO SA\Applications\LE_Environnement\LE_Environnement.xlsx" -ReadOnly
 
 
 #Migration des fichiers d'un serveur de fichiers vers un site SharePoint
