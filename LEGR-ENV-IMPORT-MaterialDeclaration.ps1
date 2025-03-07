@@ -1,7 +1,7 @@
 # - Import le set de donnée dans une variable $DATA
 
 #$data = Import-Excel -Path "\\lehu-fs-1-p\File_Share_Root\Docu\5000 - Vállalati Dokumentumok_Corporate Documents\10 - PDF-ek Share Pointra\RKFT Document list with tags.xlsx" 
-$data = Import-Excel -Path "C:\Users\bve\OneDrive - LEMO SA\Applications\LE_Environnement\LE_Environnement.xlsx" -WorksheetName "CustomerRelation"
+$data = Import-Excel -Path "C:\Users\bve\OneDrive - LEMO SA\Applications\LE_Environnement\LE_Environnement.xlsx" -WorksheetName "MaterialDeclaration"
 
 
 #Migration des fichiers d'un serveur de fichiers vers un site SharePoint
@@ -12,7 +12,7 @@ Connect-PnPOnline -Url $weburl -Interactive -ClientId '78d71e5d-4290-4f85-b915-d
 
 #Connect-PnPOnline -Url $weburl 
 
-$DocLib = "Customer Relation"
+$DocLib = "Material Declaration"
 
 # - Delete the library content ----------------------------------
 #Get-PnPList -Identity $DocLib | Get-PnPListItem -PageSize 100 -ScriptBlock {
@@ -66,17 +66,14 @@ foreach($line in $data)
         #$desc1 = $line.'SP Descprition' -replace("<BR>","`r`n")
 
         $SmallName  = $line.'FileName ' -replace($files.Extension,"")
-        $Desc = @($line.F5, $line.F6, $line.F7, $line.F8, $line.F9, $line.F10, $line.F11) | Where-Object { $_ -ne "" -and $_ -ne $null }
+        $Desc = @($line.F7, $line.F8, $line.F9, $line.F10, $line.F11) | Where-Object { $_ -ne "" -and $_ -ne $null }
         $Desc = if ($null -eq $Desc -or $Desc.Count -eq 0) { @("") } else { $Desc }
-
-        $Desc2      = $Desc -join "<br/>"
-
 
         Add-PnPFile -Path $Reference -Folder $DocLib -NewFileName $line.'FileName '.TrimEnd() -Values @{Author=$Author;Editor=$Editor;Created=$StartDate;Modified=$ModDate;
                      Title=$SmallName + " - " + $line.F5;
                      _ExtendedDescription=$Desc -join "<br/>"
                      Category=$line.F5
-                     Customer=$line.F6 
+                     Serie=$line.F6 
                      
                      
                      } #> $null
