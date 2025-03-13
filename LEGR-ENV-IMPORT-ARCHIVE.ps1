@@ -5,7 +5,7 @@ $data = Import-Excel -Path "C:\Users\bve\OneDrive - LEMO SA\Applications\LE_Envi
 
 
 #Migration des fichiers d'un serveur de fichiers vers un site SharePoint
-#Connect to PNP
+#Connect to PNP sadfasdfasdf
 $weburl = "https://lemo.sharepoint.com/sites/LEGR-ENV"
 #Connect-PnPOnline -Url $weburl -UseWebLogin
 Connect-PnPOnline -Url $weburl -Interactive -ClientId '78d71e5d-4290-4f85-b915-d9958bb940bf'
